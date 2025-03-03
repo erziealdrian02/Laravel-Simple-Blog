@@ -19,6 +19,10 @@ class PostController extends Controller
      */
     public function home()
     {
+        $updatedPosts = Post::where('status', 'scheduled')
+            ->where('published_at', '<=', now())
+            ->update(['status' => 'published']);
+
         $posts = Post::where('user_id', Auth::id())->paginate(10);
         return view('home', compact('posts'));
     }
@@ -50,8 +54,19 @@ class PostController extends Controller
         $posts->user_id = Auth::id();
         $posts->title = $request->title;
         $posts->content = $request->content;
-        $posts->status = $request->has('is_draft') ? 'draft' : 'published';
-        $posts->published_at = $request->published_at;
+
+        $publishedAt = $request->published_at;
+        $today = now();
+
+        if ($request->has('is_draft')) {
+            $posts->status = 'draft';
+        } elseif ($publishedAt && $publishedAt > $today) {
+            $posts->status = 'scheduled';
+        } else {
+            $posts->status = 'published';
+        }
+
+        $posts->published_at = $publishedAt;
 
         $posts->save();
 
