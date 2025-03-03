@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,20 +8,24 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/posts', function () {
-    return view('posts.index');
-})->name('posts.index');
-
-Route::get('/posts/create', function () {
-    return view('posts.create');
-})->name('posts.create');
-
-Route::get('/posts/show', function () {
-    return view('posts.show');
-});
-
-Route::get('/posts/edit', function () {
-    return view('posts.edit');
+Route::middleware(['auth', 'verified'])->group(function () {  
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
+    
+    // Vehicle Controller
+    Route::get('/posts', [PostController::class, 'index'])  
+        ->name('posts.index'); 
+    Route::get('/posts/create', [PostController::class, 'create'])  
+        ->name('posts.create'); 
+    Route::post('/posts/store', [PostController::class, 'store'])  
+        ->name('posts.store');
+    Route::get('/posts/show/{id}', [PostController::class, 'show'])
+        ->name('posts.show');
+    Route::put('/posts/update/{id}', [PostController::class, 'update'])  
+        ->name('posts.update');
+    Route::delete('/posts/delete/{id}', [PostController::class, 'delete'])  
+        ->name('posts.delete'); 
 });
 
 Route::middleware('auth')->group(function () {
