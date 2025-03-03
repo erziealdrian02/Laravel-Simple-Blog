@@ -17,8 +17,8 @@ Proyek ini adalah sistem manajemen postingan blog berbasis Laravel yang memungki
 ## Instalasi
 ### 1. Clone Repository
 ```sh
-git clone https://github.com/username/repository.git
-cd repository
+git clone https://github.com/erziealdrian02/Laravel-Simple-Blog.git
+cd Laravel-Simple-Blog
 ```
 
 ### 2. Instal Dependensi
@@ -53,9 +53,9 @@ php artisan migrate
 
 ### 6. Jalankan Server
 ```sh
-php artisan serve
+npm run serve
 ```
-Akses proyek di browser melalui `http://127.0.0.1:8000`
+Akses proyek di browser melalui `http://127.0.0.1:3000`
 
 ---
 
@@ -74,6 +74,8 @@ Akses proyek di browser melalui `http://127.0.0.1:8000`
 │   │   │   ├── index.blade.php
 │   │   │   ├── create.blade.php
 │   │   │   ├── edit.blade.php
+│   │   │   ├── show.blade.php
+│   ├── home.blade.php
 │
 ├── routes/
 │   ├── web.php
