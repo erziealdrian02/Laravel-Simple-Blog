@@ -1,52 +1,94 @@
-# Laravel Simple Blog
+# Laravel Blog Post Management
 
-## 1. Overview
+## Deskripsi
+Proyek ini adalah sistem manajemen postingan blog berbasis Laravel yang memungkinkan pengguna untuk membuat, mengedit, menjadwalkan, dan menyimpan postingan sebagai draft. Sistem ini menggunakan Laravel Blade, Alpine.js untuk efek dinamis pada UI, serta database MySQL untuk menyimpan data.
 
-Build a simple blog system with basic user authentication and post management.
+---
 
-## 2. Workflow
+## Fitur Utama
+- CRUD (Create, Read, Update, Delete) untuk postingan blog
+- Menjadwalkan postingan dengan memilih tanggal dan waktu
+- Menyimpan postingan sebagai draft
+- Validasi input form
+- UI interaktif dengan Alpine.js
 
-1. Set a deadline and let us know. This deadline will depend on your schedule.
-2. Clone this repository and set up the environment.
-3. Change the remote repository to your public repository (do not delete the commit history).
-4. Implement the required features according to the specifications below.
-5. Push your changes to your public repository.
+---
 
-## 3. Requirements
-
-### Homepage
-
-1. Switch content based on login status.
-    - **For Authenticated Users**: Show all of their own posts, including drafts and scheduled posts.
-    - **For Guest Users**: Show links to the login and registration pages.
-2. Show status label in each post.
-
-### Post Pages
-
-1. **Post Visibility**: All users, including guest users, can see the post listing and detail pages.
-2. **Post Creation**: Only authenticated users can create new posts.
-3. **Post Update/Deletion**: Only the post's author can update and delete their posts.
-4. **Post Title**: The length of post titles must be 60 characters or less.
-5. **Drafts and Scheduling**: Posts can be saved as drafts or scheduled for future publishing. These posts are hidden on the post listing page and post detail pages.
-
-### Others
-
-1. Follow the "Laravel way" and implement Laravel best practices.
-2. Create a post seeder, including all possible statuses.
-3. Write HTTP tests for home and posts routes to ensure your application behaves as expected and is reliable.
-4. For team development, commit with an appropriate commit size and write suitable commit messages.
-
-## 4. Hints
-- You can use any references or tools, such as official documentation, Stack Overflow, ChatGPT, Copilot, and Gemini.
-- You can use any AI tools to generate code; however, don't forget to review it by yourself.
-- Static view files are already provided in the project.
-- You can create a sample user using the seeder.
-
-```
-php artisan db:seed
+## Instalasi
+### 1. Clone Repository
+```sh
+git clone https://github.com/username/repository.git
+cd repository
 ```
 
-Sample User Credentials:
+### 2. Instal Dependensi
+Pastikan Composer sudah terinstall di sistem kamu.
+```sh
+composer install
+```
 
--   Email: `test@example.com`
--   Password: `password`
+### 3. Buat File Environment
+```sh
+cp .env.example .env
+```
+Lalu edit file `.env` untuk mengatur koneksi database, contohnya:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 4. Generate Key Aplikasi
+```sh
+php artisan key:generate
+```
+
+### 5. Migrasi Database
+```sh
+php artisan migrate
+```
+
+### 6. Jalankan Server
+```sh
+php artisan serve
+```
+Akses proyek di browser melalui `http://127.0.0.1:8000`
+
+---
+
+## Struktur Proyek
+```
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── PostController.php
+│   ├── Models/
+│   │   ├── Post.php
+│
+├── resources/
+│   ├── views/
+│   │   ├── posts/
+│   │   │   ├── index.blade.php
+│   │   │   ├── create.blade.php
+│   │   │   ├── edit.blade.php
+│
+├── routes/
+│   ├── web.php
+│
+├── database/
+│   ├── migrations/
+│   │   ├── create_posts_table.php
+│
+├── public/
+├── .env
+├── composer.json
+├── README.md
+```
+
+## Kontributor
+- **Muhamad Erzie Aldrian Nugraha**
+
+Jika ada pertanyaan atau masalah, silakan buat issue atau pull request. 🚀
