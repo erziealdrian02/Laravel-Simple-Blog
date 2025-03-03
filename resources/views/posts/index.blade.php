@@ -26,9 +26,9 @@
             @endforeach
 
             <!-- Pagination -->
-            <div class="mt-6">
+            <div class="mt-6 d-flex justify-content-center">
                 {{ $posts->links() }}
-            </div>
+            </div>            
         </div>
     </div>
 </x-app-layout>
