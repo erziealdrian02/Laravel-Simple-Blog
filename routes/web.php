@@ -4,15 +4,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [PostController::class, 'home'])->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {  
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
-    
     // Vehicle Controller
     Route::get('/posts', [PostController::class, 'index'])  
         ->name('posts.index'); 
@@ -22,6 +16,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('posts.store');
     Route::get('/posts/show/{id}', [PostController::class, 'show'])
         ->name('posts.show');
+    Route::get('/posts/edit/{id}', [PostController::class, 'edit'])  
+        ->name('posts.edit');
     Route::put('/posts/update/{id}', [PostController::class, 'update'])  
         ->name('posts.update');
     Route::delete('/posts/delete/{id}', [PostController::class, 'delete'])  

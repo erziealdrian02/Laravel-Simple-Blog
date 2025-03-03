@@ -13,12 +13,22 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class PostController extends Controller
 {
     use AuthorizesRequests;
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function home()
+    {
+        $posts = Post::where('user_id', Auth::id())->paginate(10);
+        return view('home', compact('posts'));
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::where('user_id', Auth::id())->paginate(10);
+        $posts = Post::whereNotIn('status', ['Draft', 'Scheduled'])->paginate(10);  
         return view('posts.index', compact('posts'));
     }
 
@@ -45,7 +55,7 @@ class PostController extends Controller
 
         $posts->save();
 
-        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
+        return redirect()->route('home')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -60,43 +70,37 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        // dd($post->published_at);
+        return view('posts.edit', compact('post'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        $this->authorize('update', $post);
+        $post = Post::findOrFail($id);
 
-        $request->validate([
-            'title' => 'required|max:60',
-            'content' => 'required',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'status' => 'required|in:draft,published,scheduled',
-            'published_at' => 'nullable|date',
-        ]);
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->published_at = $request->published_at;
+        $post->status = $request->has('is_draft') ? 'draft' : 'published';
+        $post->published_at = $request->published_at;
 
-        if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($post->image);
-            $imagePath = $request->file('image')->store('posts', 'public');
-            $post->image = $imagePath;
-        }
+        $post->save();
 
-        $post->update($request->except('image') + ['image' => $post->image]);
-
-        return redirect()->route('posts.index')->with('success', 'Post updated successfully!');
+        return redirect()->route('home')->with('success', 'Post created successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $this->authorize('delete', $post);
+        $post = Post::findOrFail($id);
         
         if ($post->image) {
             Storage::disk('public')->delete($post->image);
@@ -104,6 +108,6 @@ class PostController extends Controller
         
         $post->delete();
 
-        return redirect()->route('posts.index')->with('success', 'Post deleted successfully!');
+        return redirect()->route('home')->with('success', 'Post deleted successfully!');
     }
 }
