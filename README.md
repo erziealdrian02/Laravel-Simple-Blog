@@ -1,11 +1,11 @@
 # Laravel Blog Post Management
 
 ## Description
-This project is a Laravel-based blog post management system that allows users to create, edit, schedule, and save posts as drafts. The system uses Laravel Blade, Alpine.js for dynamic UI effects, and a MySQL database to store data.
+This project is a Laravel-based blog post management system that allows users to create, edit, schedule, and save posts as drafts. The system uses Laravel Blade, Alpine.js for dynamic effects on the UI, as well as a MySQL database to store data.
 
 ---
 
-## Main Features
+## Key Features
 - CRUD (Create, Read, Update, Delete) for blog posts
 - Schedule posts by selecting a date and time
 - Save posts as drafts
@@ -15,19 +15,19 @@ This project is a Laravel-based blog post management system that allows users to
 ---
 
 ## Installation
-### Clone Repository
-``sh
+### 1. Clone Repository
+```sh
 git clone https://github.com/erziealdrian02/Laravel-Simple-Blog.git
 cd Laravel-Simple-Blog
 ```
 
-### Install Dependencies
+### 2. Install Dependencies
 Make sure Composer is installed on your system.
 ```sh
 composer install
 ```
 
-### Create Environment File
+### 3. Create Environment File
 ```sh
 cp .env.example .env
 ```
@@ -41,17 +41,16 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### Generate Application Key
+### 4. Generate Application Key
 ```sh
 php artisan key:generate
 ```
 
-### Database Migration
+### 5. Database Migration
 ```sh
 php artisan migrate
 ```
-
-### 6. Run Vite
+### 6. Run Dev
 ```sh
 npm run dev
 ```
@@ -66,27 +65,27 @@ Access the project in a browser via `http://127.0.0.1:3000`
 ## Project Structure
 ```
 ├── app/
-│ ├── Http/
-│ │ ├── Controllers/
-│ │ │ ├── PostController.php
-│ ├── Models/
-│ │ ├── Post.php
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── PostController.php
+│   ├── Models/
+│   │   ├── Post.php
 │
 ├── resources/
-│ ├── views/
-│ │ ├── posts/
-│ │ │ ├── index.blade.php
-│ │ │ ├── create.blade.php
-│ │ │ ├── edit.blade.php
-│ │ │ ├── show.blade.php
-│ ├── home.blade.php
+│   ├── views/
+│   │   ├── posts/
+│   │   │   ├── index.blade.php
+│   │   │   ├── create.blade.php
+│   │   │   ├── edit.blade.php
+│   │   │   ├── show.blade.php
+│   ├── home.blade.php
 │
 ├── routes/
-│ ├── web.php
+│   ├── web.php
 │
 ├── database/
-│ ├── migrations/
-│ ├── create_posts_table.php
+│   ├── migrations/
+│   │   ├── create_posts_table.php
 │
 ├── public/
 ├── .env
@@ -94,9 +93,11 @@ Access the project in a browser via `http://127.0.0.1:3000`
 ├── README.md
 ```
 
-## Contributors
-- **Muhamad Erzie Aldrian Nugraha**
+## Contributors  
+
+| Contributor | Profile |  
+|-------------|---------|  
+| <img src="https://github.com/erziealdrian02.png" alt="erziealdrian02" width="40" style="border-radius: 100%"/> | [erziealdrian02](https://github.com/erziealdrian02) |  
+| <img src="https://github.com/yuki817.png" alt="yuki817" width="40" style="border-radius: 100%"/> | [yuki817](https://github.com/yuki817) |  
 
 If you have any questions or concerns, please create an issue or pull request. 🚀
-
-Translated with DeepL.com (free version)
