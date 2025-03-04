@@ -1,65 +1,68 @@
 # Laravel Blog Post Management
 
-## Deskripsi
-Proyek ini adalah sistem manajemen postingan blog berbasis Laravel yang memungkinkan pengguna untuk membuat, mengedit, menjadwalkan, dan menyimpan postingan sebagai draft. Sistem ini menggunakan Laravel Blade, Alpine.js untuk efek dinamis pada UI, serta database MySQL untuk menyimpan data.
+## Description
+This project is a Laravel-based blog post management system that allows users to create, edit, schedule, and save posts as drafts. The system uses Laravel Blade, Alpine.js for dynamic effects on the UI, as well as a MySQL database to store data.
 
 ---
 
-## Fitur Utama
-- CRUD (Create, Read, Update, Delete) untuk postingan blog
-- Menjadwalkan postingan dengan memilih tanggal dan waktu
-- Menyimpan postingan sebagai draft
-- Validasi input form
-- UI interaktif dengan Alpine.js
+## Key Features
+- CRUD (Create, Read, Update, Delete) for blog posts
+- Schedule posts by selecting a date and time
+- Save posts as drafts
+- Form input validation
+- Interactive UI with Alpine.js
 
 ---
 
-## Instalasi
+## Installation
 ### 1. Clone Repository
 ```sh
-git clone https://github.com/username/repository.git
-cd repository
+git clone https://github.com/erziealdrian02/Laravel-Simple-Blog.git
+cd Laravel-Simple-Blog
 ```
 
-### 2. Instal Dependensi
-Pastikan Composer sudah terinstall di sistem kamu.
+### 2. Install Dependencies
+Make sure Composer is installed on your system.
 ```sh
 composer install
 ```
 
-### 3. Buat File Environment
+### 3. Create Environment File
 ```sh
 cp .env.example .env
 ```
-Lalu edit file `.env` untuk mengatur koneksi database, contohnya:
+Then edit the `.env` file to set the database connection, for example:
 ```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=nama_database
+DB_DATABASE=database_name
 DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-### 4. Generate Key Aplikasi
+### 4. Generate Application Key
 ```sh
 php artisan key:generate
 ```
 
-### 5. Migrasi Database
+### 5. Database Migration
 ```sh
 php artisan migrate
 ```
-
-### 6. Jalankan Server
+### 6. Run Dev
 ```sh
-php artisan serve
+npm run dev
 ```
-Akses proyek di browser melalui `http://127.0.0.1:8000`
+### 7. Run Server
+```sh
+npm run serve
+```
+Access the project in a browser via `http://127.0.0.1:3000`
 
 ---
 
-## Struktur Proyek
+## Project Structure
 ```
 ├── app/
 │   ├── Http/
@@ -74,6 +77,8 @@ Akses proyek di browser melalui `http://127.0.0.1:8000`
 │   │   │   ├── index.blade.php
 │   │   │   ├── create.blade.php
 │   │   │   ├── edit.blade.php
+│   │   │   ├── show.blade.php
+│   ├── home.blade.php
 │
 ├── routes/
 │   ├── web.php
@@ -88,7 +93,11 @@ Akses proyek di browser melalui `http://127.0.0.1:8000`
 ├── README.md
 ```
 
-## Kontributor
-- **Muhamad Erzie Aldrian Nugraha**
+## Contributors  
 
-Jika ada pertanyaan atau masalah, silakan buat issue atau pull request. 🚀
+| Contributor | Profile |  
+|-------------|---------|  
+| <img src="https://github.com/erziealdrian02.png" alt="erziealdrian02" width="40" style="border-radius: 100%"/> | [erziealdrian02](https://github.com/erziealdrian02) |  
+| <img src="https://github.com/yuki817.png" alt="yuki817" width="40" style="border-radius: 100%"/> | [yuki817](https://github.com/yuki817) |  
+
+If you have any questions or concerns, please create an issue or pull request. 🚀
