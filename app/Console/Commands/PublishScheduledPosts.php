@@ -9,19 +9,17 @@ use App\Models\Post;
 class PublishScheduledPosts extends Command
 {
     protected $signature = 'posts:publish-scheduled';
-    protected $description = 'Update scheduled posts to published if their time has come';
+    protected $description = 'Publish scheduled posts when their publish date arrives';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $now = Carbon::now();
-
-        $posts = Post::where('status', 'scheduled')
-            ->where('published_at', '<=', $now)
+        $updatedPosts = Post::where('status', 'scheduled')
+            ->where('published_at', '<=', now())
             ->update(['status' => 'published']);
 
-        $this->info("Updated {$posts} scheduled posts to published.");
+        $this->info("Updated {$updatedPosts} posts.");
     }
 }

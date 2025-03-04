@@ -19,10 +19,6 @@ class PostController extends Controller
      */
     public function home()
     {
-        $updatedPosts = Post::where('status', 'scheduled')
-            ->where('published_at', '<=', now())
-            ->update(['status' => 'published']);
-
         $posts = Post::where('user_id', Auth::id())->paginate(10);
         return view('home', compact('posts'));
     }
